@@ -1,0 +1,339 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage{hyperref}
+%\usepackage[pdftex]{graphicx}
+%\usepackage{epstopdf}
+\usepackage{url}
+\usepackage{pdfpages}
+\usepackage{wrapfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[spanish]{babel}
+\usepackage{latexsym}
+\usepackage[latin1]{inputenc}
+%\usepackage{multicol}
+\usepackage{graphicx}%,subfig}
+\usepackage{hyperref}
+\usepackage{anysize} % Soporte para el comando \marginsize
+\usepackage{listings}
+\lstset{ %
+  backgroundcolor=\color{white},  
+  basicstyle=\footnotesize,        
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  commentstyle=\color{mygreen},    
+  deletekeywords={...},            
+  escapeinside={\%*}{*)},          
+  extendedchars=true,              
+  frame=single,	                   
+  keepspaces=true,                 
+  keywordstyle=\color{blue},       
+  language=Octave,                 
+  morekeywords={*,...},           
+  numbers=left,                    
+  numbersep=5pt,                   
+  numberstyle=\tiny\color{mygray}, 
+  rulecolor=\color{black},         
+  showspaces=false,                
+  showstringspaces=false,          
+  showtabs=false,                  
+  stepnumber=2,                    
+  stringstyle=\color{mymauve},     
+  tabsize=2,	                   
+  title=\lstname                   
+}
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=C,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+}
+\lstdefinestyle{customasm}{
+  belowcaptionskip=1\baselineskip,
+  frame=L,
+  xleftmargin=\parindent,
+  language=[x86masm]Assembler,
+  basicstyle=\footnotesize\ttfamily,
+  commentstyle=\itshape\color{purple!40!black},
+}
+\lstset{escapechar=@,style=customc}
+\marginsize{2cm}{2cm}{2cm}{2cm} % \marginsize{margen_izq}{margen_dch}{margen_sup}{margen_inf}
+\usepackage{makeidx}
+
+
+\makeindex
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{claim}{Claim}
+\newtheorem{property}{Property}
+\newtheorem{remark}{Remark}
+%\newtheorem{propi}{Propiedades}[section]
+%\newtheorem{ejs}{Ejemplos}[section]
+%\newtheorem{ej}{Ejemplo}[section]
+
+\pagestyle{myheadings}
+
+% =====Abreviaciones=====
+\newcommand{\D}{\displaystyle}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\pp}{{\mathbb P}}
+\newcommand{\Sobolev}{W_{s}^{p}}
+% =============================
+
+\setlength{\unitlength}{1 cm}
+
+
+\setlength{\unitlength}{1 cm}
+
+\title{\bf Proyecto Seguridad informática:\\
+Auditoria a Twitter
+}
+
+\author{Jorge Gonzalez\\
+Profesor: Maximiliano Vega\\
+\small{jgonzalezl@uft.edu\\ Santiago, Chile. }\\}
+
+
+
+
+\begin{document}
+\begin{figure}[t]
+    \begin{center}
+    \includegraphics[scale=1.3]{UFT.jpg}
+    \end{center}
+\end{figure}
+\maketitle
+
+\newpage{}
+
+\tableofcontents
+
+\newpage
+
+%##################################################################################
+\section{¿Que es Twitter?}
+\begin{wrapfigure}{r}{0.5\textwidth} 
+\vspace{-20pt}
+  \begin{center}
+    \includegraphics[width=0.4\textwidth]{TWITTER.jpg}
+    \label{fig:databaseUserTable}
+  \end{center}
+  \vspace{-20pt}
+  \vspace{1pt}
+\end{wrapfigure} 
+\subsection{Historia de Twitter}
+
+Twitter es un servicio gratuito de microblogging, que hace las veces de red social y que permite a sus usuarios enviar micro-entradas basadas en texto, denominadas "tweets", de una longitud máxima de 140 caracteres. 
+El 21 de marzo del 2006, fecha del primer tweet lanzado por su fundador Jack Dorsey. En sus comienzos, la idea de Twitter surgió como proyecto de investigación dentro de Obvious, una pequeña compañía situada en San Francisco.\\\\
+\textbf{Trending Topics}
+\\
+la red social amplio su ecosistema con los ya famosos “Trending Topics” o Temas del Momento. El 30 de abril del 2009, Twitter hacía oficial un cambio en su barra de búsquedas. Se trataba de fomentar aquello que originaba más “ruido”, los temas que más se repetían entre el flujo de tweets veían como accedían a una categoría mayor, de manera que todos los usuarios podían reconocer o seguir los temas más candentes. Evidentemente y con el paso del tiempo, los Trending Topics han evolucionado, desde el año pasado se añaden también Temas del Momento promocionados.\\
+\textbf{Hashtag}\\
+Otra de las claves de Twitter fue la inclusión de Hashtags, una etiqueta que bajo el símbolo de hash (\#) seguida de una palabra o varias concatenadas, permitía realizar un seguimiento de temas a los usuarios.
+
+\subsection{Tecnología usada}
+
+Twitter está Escrita en Ruby on Rails, es un framework de aplicaciones web de código abierto escrito en el lenguaje de programación Ruby, la interfaz de Twitter es tremendamente sencilla. Seguimos y nos siguen. Los usuarios que seguimos aparecen en el timeline y viceversa, lo que comúnmente se conoce en lenguaje “twitero” como followers y followings.\\
+Todos los mensajes de Twitter van a parar al servidor de un software programado en Scala, además, la API está totalmente abierta a desarrolladores, motivo por el cual Twitter puede integrarse en todo tipo de webs, blogs o dispositivos móviles.
+Twitter confirmó en 2010 una de las actualizaciones más demandadas, incluyendo por fin la posibilidad de poder ver fotos, vídeos y contenido que llegaba de otros alojamientos. Además, desde la semana pasada la compañía añadió la opción que te permite utilizar siempre HTTPS cuando accedes a Twitter.com con el fin de mejorar la seguridad.
+\newpage
+\section{tipos de ataques}
+de los que se vieron online existen ataques que dicen funcionar como por ejemplo con exploits como los que se ven a continuacion:\\
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.3]{hack1.png}
+    \caption{ingreso a efinis con host modificado.}
+    \label{fig:my_label}
+\end{figure}\\
+como se puede ver en su mayor parte se realizan acciones con exploits para saber que es un exploit se debe revisar la sigueinte definicion:
+Las definiciones habituales hablan de un programa o código que se aprovecha de un agujero de seguridad (vulnerabilidad) en una aplicación o sistema, de forma que un atacante podría usarla en su beneficio.
+
+\subsection{Medidas de protección}
+\begin{itemize}
+    \item Mantener todas nuestras aplicaciones y sistemas actualizados: sabiendo que los exploits se aprovechan de los agujeros de seguridad, resulta vital cerrarlos cuanto antes. Por eso es necesario mantener una política de actualizaciones eficaz para evitar dejar una ventana de tiempo que pueda ser aprovechada por los atacantes.
+  \item Mitigar los efectos de posibles exploits usados en nuestra contra. Puede suceder que el fabricante del sistema o aplicación vulnerable no haya lanzado todavía una actualización que solucione el problema. En este caso, se pueden utilizar herramientas como el Kit de herramientas de Experiencia de Mitigación mejorada (EMET) para Windows. Esto ayudará a evitar que tu sistema se infecte hasta que aparezca una solución definitiva.
+  \item Contar con una solución de seguridad avanzada como ESET Smart Security, capaz de detectar y bloquear exploits pensados para aprovechar vulnerabilidades en navegadores web y lectores PDF, entre otros.
+    
+\end{itemize}
+
+\newpage
+\subsection{Revisiones a realizar}
+ \begin{itemize}
+        \item Análisis dinámico.
+    \item Comunicación con el servidor
+    \item Estudio de la estructura de protección del almacenamiento de datos.
+    \item Decompilación de la aplicación.
+    \item Revisión del código fuente.
+    \end{itemize}
+
+\newpage
+\section{Segundo incremetal}
+\subsection{Investigacion previa}
+Lo primero que se hizo fue probar con los supuestos exploits que se tenía en internet aquí un ejemplo del resultado:\\
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.4]{jak1.png}
+    \caption{}
+    \label{fig:my_label}
+\end{figure}\\
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.3]{jak2.png}
+    \caption{}
+    \label{fig:my_label}
+\end{figure}\\
+Como es posible notar al inspeccionar la página se ve que la prueba solo era un “cazas bobos” ya que en el intento de conectarse con un socket solo lograba la falta de respuesta.\\
+Luego de verificar esto se intentó ver a qué resultado se había llegado, pero para eso pedía un pago, lo que dejaba más en claro que solo se deseaba hacer perder el tiempo y dinero a quienes lo intentaban, luego de esto ya no se intentó más tratar de encontrar alguna falla con los similares a estos ya que se presumió que todos o la gran mayoría de ellos eran similares y serian perdidas de tiempo.
+\subsection{Desencriptado de la aplicación}
+Para poder desencriptar la aplicación se utilizó el sistema operativo lionsec y las herramientas APKtool en concreto lo que se muestra en la siguiente imagen:\\
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.3]{apk1.png}
+    \caption{}
+    \label{fig:my_label}
+\end{figure}\\
+Ya con la aplicación descargada se pasó a lionsec para poder descompilarla con las herramientas de este como ve se en la imagen:\\
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.4]{apk2.png}
+    \caption{}
+    \label{fig:my_label}
+\end{figure}\\
+Como se ve en la imagen después de descompilarla aplicación se creó una carpeta con algunos de los archivos que componen la aplicación para así lograr ver si se tiene alguna vulnerabilidad que se logre explotar.
+Como se muestra en la siguiente imagen lo único que se logró ver en la aplicación descompilada es el archivo META-INF el cual tiene el cifrado que se utiliza en la aplicación el cual es SHA-1 como se vio en el documento MANIFEST-MF que se ve a continuación:\\
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.6]{apk25.png}
+    \caption{}
+    \label{fig:my_label}
+\end{figure}\\
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.6]{apk255.png}
+    \caption{}
+    \label{fig:my_label}
+\end{figure}\\
+\subsection{Escaneo de puertos}
+Después de esto se escanearon los puertos con nmap para ver si existía algún puerto descuidado o alguna otra falla lo cual solo se encontró los siguiente:\\
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.8]{apk4.png}
+    \caption{}
+    \label{fig:my_label}
+\end{figure}\\
+de esto solo se puede inferir que Los puertos abiertos son solo 2 lo que se ven son :\\
+\begin{itemize}
+    \item Puerto 80
+    \item Puerto 443 
+\end{itemize}
+
+Por lo que se investigo el Puerto 80 es el puerto por default, por el medio del cual un servidor HTTP “escucha” la petición hecha por un cliente, es decir por una PC en específico Y el puerto 443 seria el que da el indicio de que las comunicaciones se realizan con certificados TLS lo que seria otro punto mas a investigar.
+\newpage
+\section{que son las distribuciones basadas en Linux para auditorias}
+
+las distribuciones de Linux enfocados a las auditorias son, como lo dice su nombre variaciones del sistema operativo Linux que cuantas con una gran cantidad de herramientas y utilidades que son de gran ayuda a la hora de probar funcionalidades y seguridad de aplicaciones, sistemas, páginas web, sistemas web, etc…\\
+estas distribuciones y recopilación de herramientas para la seguridad informática se pueden distribuir en tres categorías: distribuciones para penesting, para auditorias de seguridad y distribuciones seguras.\\
+Las distribuciones más conocidas son:
+\begin{itemize}
+    \item Kali Linux
+\item Parrot Security OS
+\item Xiaopan OS
+\item WifiSlax
+\item BackBox
+\item Samurai Web Testing Framework
+\item DEFT Linux
+\item Caine
+\item Nst
+\item Santoku Linux
+\item BlackArch
+\item Bugtraq
+\end{itemize}
+\\
+Entre otros, es importante tenerlos en cuenta ya que en muchos casos estas distribuciones  son esécializadas en su ámbito lo que las hace muy útiles en el momento que se necesite una distribución para los distintos casos.
+\\
+En esta ocasión se utilizaron algunas de las herramientas de la distribución de Linux kali, esta distribución está destinada principalmente para la auditoria de aplicaciones en distintos ámbitos.
+Para probar algunos de los puntos importantes de la aplicación se utilizaron dos herramientas de este sistema: APKtool y SQLmap.
+\newpage
+\subsection{Decompilación de la aplicación con apktool}
+con la aplicación ya en el sistema se procedió a descompilarla como se ve en la imagen:\\
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.5]{apktool1.png}
+    \caption{}
+    \label{fig:my_label}
+\end{figure}\\
+
+con la aplicación y descompilada se procedió a ver que archivos tenia y si había algunos datos de importancia dentro de esta misma y el archivo más relevante que se encontró fue el archivo Android manifest que es el archivo de configuración de la aplicación está situado en la raíz de esta misma y controla todos los permisos necesarios para que la aplicación funcione.
+\\
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.5]{apktool2.png}
+    \caption{}
+    \label{fig:my_label}
+\end{figure}\\
+En el Android manifest se encontraron todos los permisos de la aplicación, pero el dato más importante que se encontró fue el host de la aplicación y distintos tipos de tags con los cuales hacer consultas como se ve en la siguiente imagen:
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.5]{apktool3.png}
+    \caption{}
+    \label{fig:my_label}
+\end{figure}\\
+Con estos datos se creo un script en Python junto con la librería request para generar una consulta sobre un URL tomando en consideración todos los urls que se obtuvieron dentro del manifest como se ve en la siguiente imagen:\\
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.7]{requestpython.png}
+    \caption{}
+    \label{fig:my_label}
+\end{figure}\\
+
+Los resultados que se obtuvieron son respuestas 200 y 404 las cuales son OK para recibir la consulta y no se encuentra la pagina como se aprecia en la imagen:\\
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.6]{request.png}
+    \caption{}
+    \label{fig:my_label}
+\end{figure}\\
+
+Luego de saber cuales eran las URLs con las que se podía ttrabajr se probaron los estas en SQLmap para lograr ver si se podía obtener algo, lo cual como se suponía tuvo resultados negativos.
+
+
+
+\newpage
+\begin{thebibliography}{X}
+
+\bibitem{Listas} \\ Hipertextual. (2017). Historia de Twitter. [online] Available at: https://hipertextual.com/archivo/2011/03/historia-twitter/ [Accessed 28 Sep. 2017].
+
+\bibitem{Listas} \\ Cad.com.mx. (2017). Historia de Twitter. [online] Available at: http://www.cad.com.mx/historia_de_twitter.htm [Accessed 28 Sep. 2017].
+
+
+\bibitem{Listas} \\ Rubyonrails.org.es. (2017). Ruby on Rails - El desarrollo web que no molesta. [online] Available at: http://rubyonrails.org.es/ [Accessed 28 Sep. 2017].
+
+ \bibitem{Listas} \\ Como hackear una cuenta de Twitter gratis? | Hackear Cuentas. [online] Hackearcuentas.com. Available at: http://hackearcuentas.com/twitter/ [Accessed 28 Sep. 2017].
+
+ \bibitem{Listas} \\ Albors, J. and Albors, J. (2017). ¿Sabes qué es un exploit y cómo funciona?. [online] WeLiveSecurity. Available at: https://www.welivesecurity.com/la-es/2014/10/09/exploits-que-son-como-funcionan/ [Accessed 28 Sep. 2017].
+ 
+ \bibitem{Listas} \\ https://stackoverflow.com/questions/41216047/apptool-decompile-with-and-apktool/41216097
+
+
+ \bibitem{Listas} \\ http://www.openexpo.es/mejores-distribuciones-linux-seguridad/
+ \bibitem{Listas} \\ http://computerhoy.com/paso-a-paso/software/que-es-kali-linux-que-puedes-hacer-41671
+ \bibitem{Listas} \\ http://www.tuprogramacion.com/glosario/que-es-el-android-manifest/
+
+ 
+\end{thebibliography}
+
+\end{document}
