@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="?selectableItemBackground" android:layout_width="fill_parent" android:layout_height="?drawerItemHeight" android:paddingStart="?drawerViewSidePadding" android:paddingEnd="?drawerViewSidePaddingHalf"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:gravity="center_vertical" android:id="@id/icon_view" android:visibility="gone" android:layout_width="@dimen/drawer_icon_view_size" android:layout_height="fill_parent" android:layout_marginEnd="@dimen/drawer_icon_padding" />
+    <TextView android:textAppearance="?drawerItemTitleStyle" android:gravity="start|center" android:id="@id/title" android:layout_width="0.0dip" android:layout_height="fill_parent" android:maxLines="1" android:drawablePadding="?drawerIconPaddingEnd" android:layout_weight="1.0" android:paddingEnd="?drawerViewSidePaddingHalf" />
+    <FrameLayout android:gravity="end|center" android:id="@id/action_view" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+</LinearLayout>

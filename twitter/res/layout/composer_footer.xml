@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@id/composer_footer" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="56.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:twitter="http://schemas.android.com/apk/res-auto">
+    <FrameLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <com.twitter.android.composer.mediarail.view.MediaRailView android:id="@id/media_rail" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    </FrameLayout>
+    <View android:background="@color/border_color" android:layout_width="fill_parent" android:layout_height="@dimen/border_thickness" />
+    <LinearLayout android:orientation="horizontal" android:background="@color/app_background" android:layout_width="fill_parent" android:layout_height="56.0dip" android:paddingStart="@dimen/composer_footer_left_margin" android:paddingEnd="@dimen/composer_horizontal_margin">
+        <com.twitter.ui.widget.ToggleImageButton android:layout_gravity="center_vertical" android:id="@id/location" android:background="@null" android:layout_width="wrap_content" android:layout_height="fill_parent" android:src="?iconComposerGeo" android:scaleType="center" android:paddingEnd="?composerIconPadding" twitter:contentColor="?composerIconTint" twitter:contentDescriptionOn="@string/button_action_disable_geo_tag" twitter:contentDescriptionOff="@string/button_action_enable_geo_tag" twitter:toggleOnClick="false" />
+        <View android:visibility="invisible" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0" />
+        <com.twitter.ui.widget.TintableImageButton android:layout_gravity="center_vertical" android:id="@id/gallery" android:background="@null" android:layout_width="wrap_content" android:layout_height="fill_parent" android:src="?iconComposerPhotos" android:contentDescription="@string/button_action_photos" android:paddingEnd="?composerIconPadding" twitter:tintColorList="?composerIconTint" />
+        <View android:visibility="invisible" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0" />
+        <com.twitter.ui.widget.TintableImageButton android:layout_gravity="center_vertical" android:id="@id/found_media" android:background="@null" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="fill_parent" android:src="?iconComposerGif" android:contentDescription="@string/button_action_found_media" android:paddingEnd="?composerIconPadding" twitter:tintColorList="?composerIconTint" />
+        <View android:id="@id/found_media_space" android:visibility="gone" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0" />
+        <com.twitter.ui.widget.TintableImageButton android:layout_gravity="center_vertical" android:id="@id/poll" android:background="@null" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="fill_parent" android:src="?iconComposerPoll" android:contentDescription="@string/button_action_poll" android:paddingEnd="?composerIconPadding" twitter:tintColorList="?composerIconTint" />
+        <View android:visibility="invisible" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0" />
+        <FrameLayout android:layout_gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginEnd="14.0dip">
+            <com.twitter.android.composer.ComposerCountView android:textSize="@dimen/font_size_small" android:gravity="center_vertical" android:id="@id/count" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="36.0dip" android:text="@string/max_chars" android:textAlignment="center" style="@style/CharCount" />
+            <ProgressBar android:gravity="center" android:id="@id/card_preview_progress" android:visibility="gone" android:layout_width="24.0dip" android:layout_height="24.0dip" android:indeterminate="true" style="?android:attr/progressBarStyleSmall" />
+        </FrameLayout>
+        <com.twitter.ui.widget.TwitterButton android:layout_gravity="center_vertical" android:id="@id/composer_post" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/post_tweet" style="@style/TwitterButtonMediumHeavy" />
+    </LinearLayout>
+</LinearLayout>

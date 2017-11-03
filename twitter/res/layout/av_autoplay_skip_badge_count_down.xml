@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.twitter.library.av.control.SkipWithCountDownBadgeView android:gravity="center_vertical" android:layout_gravity="bottom|center|right" android:id="@id/av_autoplay_skip_outer_container" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:id="@id/av_skip_badge_container_count_down" android:background="@drawable/bg_media_badge" android:padding="0.0dip" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/bg_media_badge_padding" android:layout_marginRight="@dimen/bg_media_badge_padding" android:layout_marginBottom="@dimen/bg_media_badge_padding">
+        <com.twitter.library.av.control.AutoPlayBadgeTextView android:id="@id/av_badge_duration_text" style="@style/AutoPlayBadgeText" />
+    </LinearLayout>
+    <LinearLayout android:gravity="center_vertical" android:id="@id/av_skip_badge_container" android:background="@drawable/bg_media_skip_badge" android:padding="0.0dip" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="@dimen/bg_media_badge_padding">
+        <include layout="@layout/av_skip" />
+    </LinearLayout>
+</com.twitter.library.av.control.SkipWithCountDownBadgeView>

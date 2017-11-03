@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:background="@color/black_opacity_50" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:layout_gravity="center" android:orientation="vertical" android:background="@drawable/rounded_rectangle_bg" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <TextView android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/moment_maker_color_picker_title" style="@style/MomentMakerColorPickerText" />
+        <android.support.v7.widget.RecyclerView android:layout_gravity="center_horizontal" android:id="@id/color_picker_grid" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingStart="@dimen/moments_standard_spacing" android:paddingEnd="@dimen/moments_standard_spacing" />
+        <LinearLayout android:gravity="end" android:orientation="horizontal" android:padding="@dimen/moments_standard_spacing" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <com.twitter.ui.widget.TwitterButton android:gravity="center" android:id="@id/color_picker_all_tweets" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@style/TwitterButtonSmallCondensedBorderless" />
+            <com.twitter.ui.widget.TwitterButton android:gravity="center" android:id="@id/color_picker_this_tweet" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@style/TwitterButtonSmallCondensedBorderless" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

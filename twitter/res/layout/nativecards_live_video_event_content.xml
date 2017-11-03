@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:id="@id/card" android:background="@drawable/bg_app_background_with_border" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include layout="@layout/nativecards_live_video_event_media_container" />
+    <include layout="@layout/nativecards_live_video_event_info" />
+</RelativeLayout>
